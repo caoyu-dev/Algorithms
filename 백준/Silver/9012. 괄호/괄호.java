@@ -1,33 +1,35 @@
+import java.io.*;
 import java.util.Scanner;
 import java.util.Stack;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        int T = Integer.parseInt(br.readLine());
 
-        for (int i = 0; i < N; i++) {
-            Stack<Character> st = new Stack<>();
-            String s = sc.next();
+        while (T-- > 0) {
+            Stack<Character> stack = new Stack<>();
+            String str = br.readLine() + "\n";
 
-            for (int j = 0; j < s.length(); j++) {
-                if (s.charAt(j) == '(') {
-                    st.push('(');
-                } else if (s.charAt(j) == ')') {
-                    if (!st.empty()) {
-                        st.pop();
+            for (char ch : str.toCharArray()) {
+                if (ch == '(') {
+                    stack.push('(');
+                } else if (ch == ')') {
+                    if (!stack.isEmpty()) {
+                        stack.pop();
                     } else {
-                        st.push(')');
+                        stack.push(')');
                         break;
                     }
                 }
             }
-            if (st.isEmpty()) {
-                System.out.println("YES");
+            if (stack.isEmpty()) {
+                bw.write("YES\n");
             } else {
-                System.out.println("NO");
+                bw.write("NO\n");
             }
-            st.clear();
         }
+        bw.flush();
     }
 }
