@@ -1,17 +1,20 @@
-import java.util.Scanner;
-import java.util.StringTokenizer;
+import java.io.*;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String input;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        int A, B;
 
-        while (sc.hasNextLine() && !(input = sc.nextLine()).isEmpty() && !input.equals("0 0")) {
-            StringTokenizer st = new StringTokenizer(input);
-            int n = Integer.parseInt(st.nextToken());
-            int m = Integer.parseInt(st.nextToken());
-            System.out.println(n + m);
+        while (true) {
+            String[] numbers = br.readLine().split(" ");
+            A = Integer.parseInt(numbers[0]);
+            B = Integer.parseInt(numbers[1]);
+            if (A == 0 && B == 0) {
+                break;
+            }
+            bw.write(A + B + "\n");
         }
-        sc.close();
+        bw.flush();
     }
 }
